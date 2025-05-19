@@ -47,7 +47,7 @@ public class CategoryService {
     public Category editCategory(Category category, CategoryRequestDTO categoryRequestDTO) {
         category.setName(categoryRequestDTO.name());
 
-        return category;
+        return saveCategory(category);
     }
 
     public Page<Category> findAllCategoriesPage(int page, int size) {

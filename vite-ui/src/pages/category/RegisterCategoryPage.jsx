@@ -47,12 +47,10 @@ export const RegisterCategoryPage = ({ initialData, getCategoryError }) => {
       let response;
       setStatus(Fetching);
 
-
-
       if (isEditMode) {
         response = await putEntity(
           entityPath,
-          initialData?.reviewId,
+          initialData?.categoryId,
           data
         );
       } else {

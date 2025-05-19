@@ -12,7 +12,7 @@ import { useCheckAdminRole } from "@/hooks/useCheckRoles";
 export const PostCard = (props) => {
 
 const { post } = props
-const { postId, title,  content, price, town, posType, createdAt} = post
+const { postId, title,  content, price, town, postType, createdAt} = post
 const navigate = useNavigate()
 const secureDelete = useSecureDelete()
 const currentPath = useCurrentPath()
@@ -22,7 +22,7 @@ const admin = useCheckAdminRole()
   return (
     <div className="w-full max-w-xl p-4 bg-white border rounded-lg shadow-md hover:shadow-lg transition">
       <div className="flex items-center justify-between mb-2 text-sm text-gray-500">
-        <span>Post ID: {postId}</span>
+        <span>Post ID: {postId}</span><span>Category: {postType}</span>
         <NavLink to={`/posts/${postId}/reviews`}><span className="text-sm text-blue-600 hover:underline cursor-pointer relative top-[-10px]">Read All Reviews</span></NavLink>
         <div className="flex flex-col items-end"><span>{dayjs(createdAt).format("YYYY-MM-DD HH:mm")}</span>
         <span>{town}</span>

@@ -50,8 +50,9 @@ public class PostService {
     }
 
     public Page<Post> findPagedPosts(int page, int size, String sort, String search) {
+        String defaultSort = "createdAt";
         if (sort == null || sort.equalsIgnoreCase("All")) {
-            Pageable pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+            Pageable pageable = PageRequest.of(page, size, Sort.by(defaultSort).descending());
             if (search == null) {
                 return postRepository.findAll(pageable);
             }
@@ -59,15 +60,15 @@ public class PostService {
             return postRepository.searchAllFields(search.toLowerCase(), pageable);
         }
 
-        Pageable pageable = PageRequest.of(page, size, Sort.by(sort));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(defaultSort).descending());
         if (search == null) {
-            return postRepository.findAll(pageable);
+            return postRepository.findByPostType(sort, pageable);
         }
         return postRepository.searchAllFields(search.toLowerCase(), pageable);
     }
 
     public boolean isNotValidSortField(String sort) {
-        List<String> sortFields = List.of("News", "Sale", "Blog");
+        List<String> sortFields = List.of("News", "Sale", "Blog", "All");
 
         return !sortFields.contains(sort);
     }

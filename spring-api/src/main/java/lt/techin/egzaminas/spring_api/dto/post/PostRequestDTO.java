@@ -21,7 +21,6 @@ public record PostRequestDTO(@NotNull(message = "You must provide title")
                              @Size(min = 10, max = 20000, message = "Content must be at least 10 characters long but not longer than 2000 characters")
                              String content,
 
-
                              @Positive(message = "price must be positive number")
                              BigDecimal price,
 

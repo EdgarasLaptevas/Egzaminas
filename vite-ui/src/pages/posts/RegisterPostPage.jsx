@@ -126,36 +126,34 @@ export const RegisterPostPage = ({ initialData = {}, getPostError }) => {
               </FormItem>
             )}
           />
-          <FormField
-            name="posType"
-            control={form.control}
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Post Type</FormLabel>
-                <FormControl>
-                  <Select
-                    value={field.value}
-                    onValueChange={field.onChange}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select category " />
-                    </SelectTrigger>
-                    <SelectContent className = "bg-blue-500 text-white">
-                      {postCategories.map((category) => (
-                        <SelectItem
-                          key={category.id}
-                          value={category.name}
-                        >
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <FormField
+  name="postType"
+  control={form.control}
+  render={({ field }) => (
+    <FormItem>
+      <FormLabel>Post Type</FormLabel>
+      <FormControl>
+        <Select
+          value={field.value}
+          onValueChange={field.onChange}
+        >
+          <SelectTrigger>
+            <SelectValue placeholder="Select post type" />
+          </SelectTrigger>
+          <SelectContent>
+            {postCategories.map((category) => (
+              <SelectItem key={category.id} value={category.name}>
+                {category.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  )}
+/>
+
           <FormField
             name="content"
             control={form.control}
